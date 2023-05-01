@@ -1,0 +1,64 @@
+.book-list {
+    margin: 2rem;
+    text-align: center;
+  }
+  
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .book-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .book-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+  
+  .book-item p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+
+  .RemoveBook{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: white;
+    color: black;
+    border: 2px solid lightgray; 
+    bottom: 0;
+    margin-top: 10px;
+    border-radius: 8px;
+
+}
+.RemoveBook:hover {
+    background-color: rgb(204, 213, 274, 0.5); /* Green */
+    color: white;
+  }
+.NotesButton{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: white;
+  color: black;
+  border: 2px solid lightgray; 
+  bottom: 0;
+  margin-top: 10px;
+  border-radius: 8px;
+
+}
+.NotesButton:hover{
+  background-color: rgb(204, 213, 274, 0.5); /* Green */
+  color: white;
+}
