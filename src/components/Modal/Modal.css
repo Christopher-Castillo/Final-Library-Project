@@ -1,47 +1,97 @@
-.modalBackground {
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(200, 200, 200);
-    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .modalContainer {
-    width: 600px;
-    height: 500px;
-    border-radius: 12px;
+  .modal-content {
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
   }
   
-  .modalContainer .title {
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
+  .modal-content h2 {
+    margin-top: 0;
+  }
+  
+  .page-number-container,
+  .book-notes-container {
+    margin-bottom: 10px;
+  }
+  
+  .page-number-container label,
+  .book-notes-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
   }
   
   
-  
-  .modalContainer .body {
-    flex: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.7rem;
-    text-align: center;
+  .book-notes-container textarea {
+    height: 150px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    resize: none;
   }
   
-  .modalContainer .footer {
-    flex: 20%;
+  .page-number-container input{
+    width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    resize: none;
+  }
+  
+  .modal-buttons {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .save-button{
+    
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+  }
+  .clear-button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
   }
 
+  .close-button {
+    flex-direction: row;
+    margin-right: 90%;    
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+  }
   
- 
+  .close-button:hover {
+    color: #000;
+  }
+  

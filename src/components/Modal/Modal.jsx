@@ -1,63 +1,66 @@
-import "./Modal.css"
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import "./Modal.css";
 
-function Modal({ closeModal, bookId }) {
-  const [page, setPage] = useState('');
-  const [notes, setNotes] = useState('');
+const Modal = ({ closeModal, bookId }) => {
+  const [bookNotes, setBookNotes] = useState("");
+  const [pageNumber, setPageNumber] = useState("");
 
-  // Save notes for a book
-  function saveNotes(bookId, notes) {
-    let allNotes = JSON.parse(localStorage.getItem('bookNotes')) || {};
-    allNotes[bookId] = notes;
-    localStorage.setItem('bookNotes', JSON.stringify(allNotes));
-  }
-  
-  // Get notes for a book
-  function getNotes(bookId) {
-    let allNotes = JSON.parse(localStorage.getItem('bookNotes')) || {};
-    return allNotes[bookId];
-  }
-  
-  // Save notes when 'Save' button is clicked
-  const handleSave = () => {
-    saveNotes(bookId, {page, notes});
-    closeModal(false);
-  }
-  
-  // Clear page and notes when 'Clear' button is clicked
-  const handleClear = () => {
-    setPage('');
-    setNotes('');
-  }
-  
-  // Get notes for the current book when the modal opens
   useEffect(() => {
-    const savedNotes = getNotes(bookId);
-    if (savedNotes) {
-      setPage(savedNotes.page);
-      setNotes(savedNotes.notes);
-    }
+    const savedNotes = JSON.parse(localStorage.getItem(bookId)) || {};
+    setBookNotes(savedNotes.bookNotes || "");
+    setPageNumber(savedNotes.pageNumber || "");
   }, [bookId]);
-  
+
+  const handleSaveNotes = () => {
+    localStorage.setItem(
+      bookId,
+      JSON.stringify({ bookNotes: bookNotes, pageNumber: pageNumber })
+    );
+    closeModal();
+  };
+
+  const handleClearNotes = () => {
+    setBookNotes("");
+    setPageNumber("");
+    localStorage.removeItem(bookId);
+    closeModal();
+  };
+
   return (
-    
-    <div className='modalBackground'>
-      <div className='modalContainer'>
-        <button onClick={() => closeModal(false)}>X</button>
-        <div className='title'>
-          <h1>Book Notes</h1>
+    <div className="modal-overlay">
+
+      <div className="modal-content">
+      <button className="close-button" onClick={() => closeModal(false)}>X</button>
+
+        <h2>Book Notes</h2>
+        <div className="page-number-container">
+          <label htmlFor="page-number">Page Number:</label>
+          <input
+            type="text"
+            id="page-number"
+            value={pageNumber}
+            onChange={(e) => setPageNumber(e.target.value)}
+          />
         </div>
-        <div className='body'>
-          <input type='text' placeholder='Page Number' value={page} onChange={(e) => setPage(e.target.value)} />
-          <textarea placeholder='Enter your notes here...' value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
+        <div className="book-notes-container">
+          <label htmlFor="book-notes">Notes:</label>
+          <textarea
+            id="book-notes"
+            value={bookNotes}
+            onChange={(e) => setBookNotes(e.target.value)}
+          ></textarea>
         </div>
-        <div className='footer'>
-          <button onClick={handleClear}> Clear </button>
-          <button onClick={handleSave}> Save </button>
+        <div className="modal-buttons">
+          <button className="save-button" onClick={handleSaveNotes}>
+            Save
+          </button>
+          <button className="clear-button" onClick={handleClearNotes}>
+            Clear
+          </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Modal;

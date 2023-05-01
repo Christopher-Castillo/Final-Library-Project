@@ -3,10 +3,16 @@ import { Link } from 'react-router-dom';
 import "./Navbar.css";
 import logoImg from "../../images/undrawbook.svg";
 import {HiOutlineMenuAlt3} from "react-icons/hi";
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from '../LogInButton';
+import LogoutButton from '../LogOutButton';
+
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleNavbar = () => setToggleMenu(!toggleMenu);
+  const { loginWithPopup, isAuthenticated } = useAuth0();
+
 
   return (
     <nav className='navbar' id = "navbar">
@@ -31,6 +37,12 @@ const Navbar = () => {
             <li className='nav-item'>
               <Link to = "bookshelf" className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Bookshelf</Link>
             </li>
+            {
+        !isAuthenticated ?
+        <LoginButton />
+        :
+        <LogoutButton />
+      }
           </ul>
         </div>
       </div>
