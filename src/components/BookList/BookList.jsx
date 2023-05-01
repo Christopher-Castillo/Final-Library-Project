@@ -9,6 +9,7 @@ import "./BookList.css";
 
 const BookList = () => {
   const {books, loading, resultTitle} = useGlobalContext();
+  
   const booksWithCovers = books.map((singleBook) => {
     return {
       ...singleBook,
@@ -19,6 +20,7 @@ const BookList = () => {
   });
 
   if(loading) return <Loading />;
+  console.log(booksWithCovers);
 
   return (
     <section className='booklist'>
